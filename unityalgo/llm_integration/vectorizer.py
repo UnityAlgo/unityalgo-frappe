@@ -1,37 +1,30 @@
 import frappe
-import html2text
+import requests
+from bs4 import BeautifulSoup
 from .utils import is_html
-from sentence_transformers import SentenceTransformer
-import numpy as np
 
-VECTOR_SIZE = 384
 
-IGNORE_FIELDS = {"doctype", "name", "idx", "owner", "modified_by", "creation", "modified", "docstatus"}
-
-h = html2text.HTML2Text()
-h.ignore_links = False
-h.body_width = 0
-
-DEFAULT_MODEL = "all-MiniLM-L6-v2"
+OLLAMA_URL = "http://localhost:11434"
+DEFAULT_MODEL = "nomic-embed-text"
+IGNORE_FIELDS = {"name", "creation", "modified", "modified_by", "owner", "docstatus"}
 
 
 class Vectorizer:
 	def __init__(self, model=DEFAULT_MODEL):
-		self._model = None
 		self.model_name = model
-
-	def _load_model(self):
-		if self._model is not None:
-			return
-
-		self._model = SentenceTransformer(self.model_name)
+		self.h = BeautifulSoup(features="html.parser")
+		try:
+			response = requests.get(f"{OLLAMA_URL}/api/tags", timeout=2)
+			response.raise_for_status()
+		except requests.exceptions.ConnectionError:
+			frappe.throw("Ollama server is not running. Please start Ollama.")
 
 	def serialize_value(self, value) -> str:
 		if value is None:
 			return ""
 		text = str(value)
 		if is_html(text):
-			return h.handle(text).strip()
+			return self.h.handle(text).strip()
 		return text.strip()
 
 	def document_to_text(self, doc) -> str:
@@ -76,28 +69,38 @@ class Vectorizer:
 
 		return "\n".join(lines)
 
-	def text_to_vector(self, text: str) -> np.ndarray:
-		self._load_model()
+	def text_to_vector(self, text: str) -> list[float]:
+		response = requests.post(
+			f"{OLLAMA_URL}/api/embeddings",
+			json={"model": self.model_name, "prompt": text},
+			timeout=60,
+		)
+		response.raise_for_status()
+		return response.json().get("embedding", [])
 
-		vector = self._model.encode(text, normalize_embeddings=True)
-		return vector
-
-	def document_to_vector(self, doc) -> tuple[str, np.ndarray]:
+	def document_to_vector(self, doc) -> tuple[str, list[float]]:
 		text = self.document_to_text(doc)
 		vector = self.text_to_vector(text)
 		return text, vector
 
 	def batch_to_vectors(self, docs: list) -> list[dict]:
-		self._load_model()
+		if not docs:
+			return []
+
 		texts = [self.document_to_text(doc) for doc in docs]
-		vectors = self._model.encode(texts, normalize_embeddings=True, show_progress_bar=True)
+		response = requests.post(
+			f"{OLLAMA_URL}/api/embed", json={"model": self.model_name, "input": texts}, timeout=120
+		)
+		response.raise_for_status()
+
+		embeddings = response.json().get("embeddings", [])
 
 		return [
 			{
 				"name": doc.name,
 				"doctype": doc.doctype,
 				"text": text,
-				"vector": vector,
+				"vector": embedding,
 			}
-			for doc, text, vector in zip(docs, texts, vectors)
+			for doc, text, embedding in zip(docs, texts, embeddings)
 		]
