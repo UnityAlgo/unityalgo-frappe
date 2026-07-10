@@ -9,6 +9,13 @@ readme = "README.md"
 dynamic = ["version"]
 dependencies = [
     # "frappe~=15.0.0" # Installed and managed by bench.
+    "anthropic>=0.40.0",
+    "openai>=1.40.0",
+    "qdrant-client>=1.7.0",
+    # Optional (do NOT pin here — its deps upgrade `click` and conflict with Frappe 15):
+    #   bench pip install fastembed
+    # Enables true BM25 sparse embeddings for hybrid search. Without it, the sparse
+    # encoder (llm_integration/sparse.py) falls back to a dependency-free hashed-TF encoder.
 ]
 
 [build-system]

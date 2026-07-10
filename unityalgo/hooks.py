@@ -145,6 +145,14 @@ app_license = "mit"
 # 	}
 # }
 
+# Real-time RAG ingestion: allowlisted DocTypes are (re)indexed in the background.
+doc_events = {
+	"*": {
+		"on_update": "unityalgo.llm_integration.sync.on_update",
+		"on_trash": "unityalgo.llm_integration.sync.on_trash",
+	}
+}
+
 # Scheduled Tasks
 # ---------------
 

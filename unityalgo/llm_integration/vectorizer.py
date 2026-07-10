@@ -8,6 +8,23 @@ OLLAMA_URL = "http://localhost:11434"
 DEFAULT_MODEL = "nomic-embed-text"
 IGNORE_FIELDS = {"name", "creation", "modified", "modified_by", "owner", "docstatus"}
 
+CHUNK_SIZE = 1600
+CHUNK_OVERLAP = 200
+
+
+def chunk_text(text: str, size: int = CHUNK_SIZE, overlap: int = CHUNK_OVERLAP) -> list[str]:
+	"""Split long serialized documents into overlapping chunks for embedding."""
+	text = (text or "").strip()
+	if len(text) <= size:
+		return [text] if text else []
+	chunks = []
+	start = 0
+	step = max(size - overlap, 1)
+	while start < len(text):
+		chunks.append(text[start : start + size])
+		start += step
+	return chunks
+
 
 class Vectorizer:
 	def __init__(self, model=DEFAULT_MODEL):

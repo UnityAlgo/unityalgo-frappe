@@ -1,0 +1,494 @@
+#page-cash-flow-and-treasu .container.page-body,
+#page-cash-flow-and-treasu .page-head > .container {
+	max-width: 100% !important;
+}
+
+#page-cash-flow-and-treasu .page-body {
+	padding-bottom: 0;
+}
+
+.treasury-dashboard {
+	min-height: calc(100vh - 98px);
+	background: #f6f7f9;
+	color: #1f2933;
+	padding: 16px;
+}
+
+.treasury-filter-band,
+.treasury-panel,
+.treasury-kpi {
+	background: #ffffff;
+	border: 1px solid #dfe3e8;
+	border-radius: 8px;
+}
+
+.treasury-filter-band {
+	padding: 12px;
+	margin-bottom: 12px;
+}
+
+.treasury-filter-grid {
+	display: grid;
+	grid-template-columns: repeat(9, minmax(130px, 1fr));
+	gap: 10px;
+}
+
+.treasury-filter {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	margin: 0;
+}
+
+.treasury-filter span {
+	color: #6b7280;
+	font-size: 11px;
+	font-weight: 600;
+}
+
+.treasury-filter select,
+.treasury-manual-form input,
+.treasury-manual-form select {
+	width: 100%;
+	height: 34px;
+	border: 1px solid #d8dde3;
+	border-radius: 6px;
+	background: #ffffff;
+	color: #1f2933;
+	font-size: 12px;
+	padding: 0 9px;
+}
+
+.treasury-kpis {
+	display: grid;
+	grid-template-columns: repeat(6, minmax(150px, 1fr));
+	gap: 12px;
+	margin-bottom: 12px;
+}
+
+.treasury-kpi {
+	padding: 14px;
+	min-height: 112px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.treasury-kpi span,
+.treasury-kpi small,
+.treasury-panel-head p,
+.treasury-account-card span,
+.treasury-form-note,
+.treasury-next-lines {
+	color: #667085;
+}
+
+.treasury-kpi span {
+	font-size: 12px;
+	font-weight: 700;
+}
+
+.treasury-kpi strong {
+	color: #111827;
+	font-size: 24px;
+	line-height: 1.15;
+}
+
+.treasury-kpi small {
+	font-size: 11px;
+	line-height: 1.35;
+}
+
+.treasury-kpi.danger strong {
+	color: #dc2626;
+}
+
+.treasury-main-grid,
+.treasury-two-col {
+	display: grid;
+	grid-template-columns: minmax(0, 2fr) minmax(340px, 1fr);
+	gap: 12px;
+	margin-bottom: 12px;
+}
+
+.treasury-bottom-grid {
+	align-items: start;
+}
+
+.treasury-panel {
+	padding: 14px;
+	min-width: 0;
+}
+
+.treasury-panel-head {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 12px;
+	margin-bottom: 12px;
+}
+
+.treasury-panel-head h3 {
+	margin: 0;
+	font-size: 15px;
+	font-weight: 700;
+	color: #111827;
+}
+
+.treasury-panel-head p {
+	margin: 4px 0 0;
+	font-size: 12px;
+}
+
+.treasury-panel-head > strong {
+	color: #0f766e;
+	font-size: 15px;
+	white-space: nowrap;
+}
+
+.treasury-chart-panel {
+	min-height: 360px;
+}
+
+.treasury-chart {
+	width: 100%;
+	height: 292px;
+	overflow: hidden;
+}
+
+.treasury-chart svg {
+	width: 100%;
+	height: 100%;
+	display: block;
+	background: linear-gradient(#fbfcfd, #ffffff);
+	border: 1px solid #edf0f3;
+	border-radius: 8px;
+}
+
+.treasury-axis {
+	stroke-width: 1;
+	stroke-dasharray: 6 6;
+}
+
+.treasury-axis.zero {
+	stroke: #ef4444;
+}
+
+.treasury-axis.reserve {
+	stroke: #f59e0b;
+}
+
+.treasury-balance-line {
+	fill: none;
+	stroke: #2563eb;
+	stroke-width: 3;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+.treasury-balance-dot {
+	fill: #2563eb;
+}
+
+.treasury-chart-label {
+	fill: #667085;
+	font-size: 12px;
+}
+
+.treasury-chart-legend {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	color: #667085;
+	font-size: 12px;
+}
+
+.treasury-chart-legend span {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+}
+
+.legend-line,
+.legend-reserve {
+	display: inline-block;
+	width: 18px;
+	height: 3px;
+	border-radius: 999px;
+	background: #2563eb;
+}
+
+.legend-reserve {
+	background: #f59e0b;
+}
+
+.treasury-alert {
+	border-radius: 8px;
+	padding: 14px;
+	margin-bottom: 14px;
+	border: 1px solid #c7d2fe;
+	background: #eef2ff;
+}
+
+.treasury-alert span {
+	font-size: 11px;
+	font-weight: 800;
+	color: #4338ca;
+}
+
+.treasury-alert h3 {
+	margin: 6px 0;
+	font-size: 18px;
+}
+
+.treasury-alert p {
+	margin: 0;
+	color: #475467;
+}
+
+.treasury-alert.critical {
+	background: #fef2f2;
+	border-color: #fecaca;
+}
+
+.treasury-alert.critical span,
+.treasury-alert.critical h3 {
+	color: #b91c1c;
+}
+
+.treasury-alert.warning {
+	background: #fffbeb;
+	border-color: #fde68a;
+}
+
+.treasury-alert.warning span,
+.treasury-alert.warning h3 {
+	color: #b45309;
+}
+
+.treasury-drivers h4 {
+	margin: 0 0 8px;
+	font-size: 13px;
+	font-weight: 700;
+}
+
+.treasury-drivers div,
+.treasury-priority-list div,
+.treasury-recommendations div {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
+	border-top: 1px solid #edf0f3;
+	padding: 9px 0;
+}
+
+.treasury-drivers span,
+.treasury-priority-list span {
+	color: #475467;
+}
+
+.treasury-drivers strong {
+	white-space: nowrap;
+}
+
+.treasury-table-wrap {
+	overflow-x: auto;
+}
+
+.treasury-table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 12px;
+}
+
+.treasury-table th,
+.treasury-table td {
+	border-top: 1px solid #edf0f3;
+	padding: 9px 8px;
+	text-align: left;
+	vertical-align: middle;
+	white-space: nowrap;
+}
+
+.treasury-table th {
+	color: #667085;
+	font-size: 11px;
+	font-weight: 700;
+	background: #fafafa;
+}
+
+.treasury-table td:nth-child(4) {
+	font-weight: 700;
+	color: #111827;
+}
+
+.treasury-badge {
+	display: inline-flex;
+	align-items: center;
+	min-height: 22px;
+	padding: 3px 8px;
+	border-radius: 999px;
+	background: #eef2ff;
+	color: #3730a3;
+	font-size: 11px;
+	font-weight: 700;
+}
+
+.treasury-badge.critical {
+	background: #fef2f2;
+	color: #b91c1c;
+}
+
+.treasury-badge.high {
+	background: #fff7ed;
+	color: #c2410c;
+}
+
+.treasury-badge.normal {
+	background: #ecfdf3;
+	color: #047857;
+}
+
+.treasury-badge.optional {
+	background: #f3f4f6;
+	color: #4b5563;
+}
+
+.treasury-account-grid {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(220px, 1fr));
+	gap: 12px;
+}
+
+.treasury-account-card {
+	border: 1px solid #dfe3e8;
+	border-radius: 8px;
+	padding: 12px;
+	background: #fbfcfd;
+}
+
+.treasury-account-card.warning {
+	border-color: #fbbf24;
+	background: #fffbeb;
+}
+
+.treasury-account-card h4 {
+	margin: 0 0 4px;
+	font-size: 13px;
+	font-weight: 700;
+}
+
+.treasury-account-metrics,
+.treasury-bucket-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 8px;
+	margin-top: 12px;
+}
+
+.treasury-metric {
+	border: 1px solid #edf0f3;
+	border-radius: 6px;
+	padding: 8px;
+	background: #ffffff;
+}
+
+.treasury-metric span {
+	display: block;
+	color: #667085;
+	font-size: 11px;
+	margin-bottom: 3px;
+}
+
+.treasury-metric strong {
+	color: #111827;
+	font-size: 13px;
+}
+
+.treasury-next-lines {
+	display: grid;
+	gap: 5px;
+	margin-top: 10px;
+	font-size: 11px;
+}
+
+.treasury-recommendations {
+	display: grid;
+	gap: 8px;
+}
+
+.treasury-recommendations div {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
+	border: 1px solid #edf0f3;
+	border-radius: 8px;
+	padding: 10px;
+}
+
+.treasury-recommendations strong {
+	color: #111827;
+}
+
+.treasury-recommendations span {
+	color: #667085;
+	font-size: 12px;
+	grid-column: 1;
+}
+
+.treasury-recommendations b {
+	color: #047857;
+	grid-column: 2;
+	grid-row: 1 / span 2;
+	align-self: center;
+	white-space: nowrap;
+}
+
+.treasury-manual-form {
+	display: grid;
+	grid-template-columns: 110px minmax(160px, 1fr) 130px 145px 135px;
+	gap: 8px;
+}
+
+.treasury-manual-actions {
+	display: flex;
+	gap: 8px;
+	grid-column: 1 / -1;
+}
+
+.treasury-form-note {
+	margin: 10px 0 0;
+	font-size: 12px;
+}
+
+@media (max-width: 1200px) {
+	.treasury-filter-grid,
+	.treasury-kpis,
+	.treasury-account-grid {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.treasury-main-grid,
+	.treasury-two-col {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media (max-width: 768px) {
+	.treasury-dashboard {
+		padding: 10px;
+	}
+
+	.treasury-filter-grid,
+	.treasury-kpis,
+	.treasury-account-grid,
+	.treasury-manual-form {
+		grid-template-columns: 1fr;
+	}
+
+	.treasury-chart-legend,
+	.treasury-panel-head {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+}

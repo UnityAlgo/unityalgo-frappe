@@ -6,11 +6,30 @@
  "engine": "InnoDB",
  "field_order": [
   "provider",
+  "chat_model",
   "ollama_model",
   "ollama_host",
   "gemini_model",
+  "anthropic_model",
+  "openai_model",
   "api_keys_section",
-  "gemini_api_key"
+  "gemini_api_key",
+  "anthropic_api_key",
+  "column_break_xkvn",
+  "openai_api_key",
+  "rag_section",
+  "embedding_model",
+  "rag_top_k",
+  "rag_score_threshold",
+  "hybrid_enabled",
+  "rerank_enabled",
+  "rerank_top_k",
+  "vector_db_column_break",
+  "qdrant_url",
+  "qdrant_api_key",
+  "ingestion_section",
+  "ingest_doctypes",
+  "reindex_documents"
  ],
  "fields": [
   {
@@ -26,8 +45,8 @@
   {
    "fieldname": "provider",
    "fieldtype": "Select",
-   "label": "Provider",
-   "options": "gemini\nollama"
+   "label": "Service Provider",
+   "options": "gemini\nollama\nopenai\nanthropic"
   },
   {
    "fieldname": "ollama_model",
@@ -43,13 +62,116 @@
    "fieldname": "gemini_model",
    "fieldtype": "Data",
    "label": "gemini_model"
+  },
+  {
+   "fieldname": "chat_model",
+   "fieldtype": "Link",
+   "label": "Chat Model",
+   "options": "Chat AI Models"
+  },
+  {
+   "fieldname": "anthropic_api_key",
+   "fieldtype": "Small Text",
+   "label": "Anthropic API Key"
+  },
+  {
+   "fieldname": "openai_api_key",
+   "fieldtype": "Small Text",
+   "label": "OpenAI API Key"
+  },
+  {
+   "fieldname": "column_break_xkvn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "claude-opus-4-8",
+   "fieldname": "anthropic_model",
+   "fieldtype": "Data",
+   "label": "Anthropic Model"
+  },
+  {
+   "fieldname": "openai_model",
+   "fieldtype": "Data",
+   "label": "OpenAI Model"
+  },
+  {
+   "fieldname": "rag_section",
+   "fieldtype": "Section Break",
+   "label": "RAG & Vector DB"
+  },
+  {
+   "default": "nomic-embed-text",
+   "fieldname": "embedding_model",
+   "fieldtype": "Data",
+   "label": "Embedding Model"
+  },
+  {
+   "default": "3",
+   "fieldname": "rag_top_k",
+   "fieldtype": "Int",
+   "label": "RAG Top K"
+  },
+  {
+   "default": "0.35",
+   "fieldname": "rag_score_threshold",
+   "fieldtype": "Float",
+   "label": "RAG Score Threshold",
+   "precision": "2"
+  },
+  {
+   "fieldname": "vector_db_column_break",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "qdrant_url",
+   "fieldtype": "Data",
+   "label": "Qdrant URL"
+  },
+  {
+   "fieldname": "qdrant_api_key",
+   "fieldtype": "Password",
+   "label": "Qdrant API Key"
+  },
+  {
+   "default": "1",
+   "fieldname": "hybrid_enabled",
+   "fieldtype": "Check",
+   "label": "Hybrid Search (dense + keyword)"
+  },
+  {
+   "default": "1",
+   "fieldname": "rerank_enabled",
+   "fieldtype": "Check",
+   "label": "LLM Re-ranking"
+  },
+  {
+   "default": "5",
+   "fieldname": "rerank_top_k",
+   "fieldtype": "Int",
+   "label": "Re-rank Top K"
+  },
+  {
+   "fieldname": "ingestion_section",
+   "fieldtype": "Section Break",
+   "label": "Document Ingestion"
+  },
+  {
+   "description": "Comma-separated DocTypes to index for retrieval (e.g. Note, ToDo, Item, Project). Leave blank for defaults.",
+   "fieldname": "ingest_doctypes",
+   "fieldtype": "Small Text",
+   "label": "Ingest DocTypes"
+  },
+  {
+   "fieldname": "reindex_documents",
+   "fieldtype": "Button",
+   "label": "Reindex Documents Now"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2026-06-28 00:30:24.715278",
+ "modified": "2026-07-01 08:41:57.941178",
  "modified_by": "Administrator",
  "module": "Unityalgo",
  "name": "AI Settings",
